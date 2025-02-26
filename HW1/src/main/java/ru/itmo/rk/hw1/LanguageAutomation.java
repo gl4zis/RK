@@ -30,8 +30,7 @@ public class LanguageAutomation {
         A(false),
         B(false),
         C(false),
-        D(true),
-        E(false);
+        D(true);
 
         private final boolean isValid;
         private State a;
@@ -41,10 +40,9 @@ public class LanguageAutomation {
         static {
             S.a = B; S.b = A; S.c = A;
             A.a = D; A.b = C; A.c = C;
-            B.a = E; B.b = D; B.c = D;
+                     B.b = D; B.c = D;
             C.a = B; C.b = A; C.c = A;
-            D.a = E; D.b = B; D.c = B;
-            E.a = E; E.b = E; E.c = E;
+                     D.b = B; D.c = B;
         }
     }
 }

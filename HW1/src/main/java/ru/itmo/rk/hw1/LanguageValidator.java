@@ -13,9 +13,12 @@ public class LanguageValidator {
         trace.add(automation.getState());
         for (char c : sentence.toCharArray()) {
             automation.next(c);
+            if (automation.getState() == null) {
+                break;
+            }
             trace.add(automation.getState());
         }
-        return new Resolution(trace, automation.getState().isValid());
+        return new Resolution(trace, automation.getState() != null && automation.getState().isValid());
     }
 
     public record Resolution(List<LanguageAutomation.State> trace, boolean isValid) {
