@@ -17,15 +17,13 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
-sourceSets.main.java.srcDirs += 'build/generated/antlr/main'
-
 test {
     useJUnitPlatform()
 }
 
 generateGrammarSource {
-    arguments += ['-visitor']
-    outputDirectory = file("build/generated/antlr/main")
+    arguments += ['-visitor', '-package', 'ru.itmo.rk.hw4.interpreter']
+    outputDirectory = file("build/generated-src/antlr/main/ru/itmo/rk/hw4/interpreter")
 }
 
 compileJava {
