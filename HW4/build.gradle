@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'antlr'
+}
+
+group = 'ru.itmo.tpo'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    antlr 'org.antlr:antlr4:4.13.2'
+    implementation 'org.antlr:antlr4-runtime:4.13.2'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+sourceSets.main.java.srcDirs += 'build/generated/antlr/main'
+
+test {
+    useJUnitPlatform()
+}
+
+generateGrammarSource {
+    arguments += ['-visitor']
+    outputDirectory = file("build/generated/antlr/main")
+}
+
+compileJava {
+    dependsOn generateGrammarSource
+}
