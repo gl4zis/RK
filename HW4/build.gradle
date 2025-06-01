@@ -13,6 +13,9 @@ dependencies {
     antlr 'org.antlr:antlr4:4.13.2'
     implementation 'org.antlr:antlr4-runtime:4.13.2'
 
+    compileOnly 'org.projectlombok:lombok:1.18.38'
+    annotationProcessor 'org.projectlombok:lombok:1.18.38'
+
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
@@ -22,8 +25,8 @@ test {
 }
 
 generateGrammarSource {
-    arguments += ['-visitor', '-package', 'ru.itmo.rk.hw4.interpreter']
-    outputDirectory = file("build/generated-src/antlr/main/ru/itmo/rk/hw4/interpreter")
+    arguments += ['-visitor', '-package', 'ru.itmo.rk.hw4']
+    outputDirectory = file("build/generated-src/antlr/main/ru/itmo/rk/hw4")
 }
 
 compileJava {
