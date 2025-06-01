@@ -7,6 +7,7 @@ import ru.itmo.rk.hw4.var.Variable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RequiredArgsConstructor
 public class StatementVisitor extends CatlinBaseVisitor<Object> {
@@ -52,6 +53,11 @@ public class StatementVisitor extends CatlinBaseVisitor<Object> {
     }
 
     @Override
+    public Object visitComment(CatlinParser.CommentContext cc) {
+        return visit(cc.statement());
+    }
+
+    @Override
     public Object visitIf(CatlinParser.IfContext ic) {
         if (checkBoolCondition(ic.expression())) {
             return visit(ic.block(0));
@@ -71,10 +77,12 @@ public class StatementVisitor extends CatlinBaseVisitor<Object> {
 
     @Override
     public Object visitBlock(CatlinParser.BlockContext bc) {
+        Set<String> heapSnapshot = heap.snapshot();
         List<Object> results = new ArrayList<>();
         for (CatlinParser.StatementContext statement : bc.statement()) {
             results.add(visit(statement));
         }
+        heap.filter(heapSnapshot);
         return results;
     }
 

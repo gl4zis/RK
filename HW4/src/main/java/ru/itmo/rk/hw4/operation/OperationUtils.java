@@ -4,6 +4,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class OperationUtils {
+
     public static double toDouble(Object obj) {
         if (obj instanceof Long l) return l.doubleValue();
         if (obj instanceof Double) return (Double) obj;

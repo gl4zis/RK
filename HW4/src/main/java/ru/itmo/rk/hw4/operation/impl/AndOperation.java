@@ -1,8 +1,10 @@
-package ru.itmo.rk.hw4.operation;
+package ru.itmo.rk.hw4.operation.impl;
+
+import ru.itmo.rk.hw4.operation.api.BinaryOperation;
 
 import java.util.Set;
 
-public class AndOperation extends Operation {
+public class AndOperation extends BinaryOperation {
 
     public AndOperation() {
         super("&&", Set.of(Boolean.class));

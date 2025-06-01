@@ -1,8 +1,11 @@
-package ru.itmo.rk.hw4.operation;
+package ru.itmo.rk.hw4.operation.impl;
+
+import ru.itmo.rk.hw4.operation.OperationUtils;
+import ru.itmo.rk.hw4.operation.api.BinaryOperation;
 
 import java.util.Set;
 
-public class GtOperation extends Operation {
+public class GtOperation extends BinaryOperation {
 
     public GtOperation() {
         super(">", Set.of(Long.class, Double.class));

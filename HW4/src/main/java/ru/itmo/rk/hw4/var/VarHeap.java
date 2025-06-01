@@ -6,6 +6,7 @@ import ru.itmo.rk.hw4.exception.VarNotFoundException;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class VarHeap {
     private final Map<String, Variable> vars = new HashMap<>();
@@ -33,5 +34,13 @@ public class VarHeap {
         }
 
         return vars.get(name);
+    }
+
+    public Set<String> snapshot() {
+        return Set.copyOf(vars.keySet());
+    }
+
+    public void filter(Set<String> neededVars) {
+        vars.keySet().removeIf(key -> !neededVars.contains(key));
     }
 }

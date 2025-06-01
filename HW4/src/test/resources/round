@@ -1,0 +1,14 @@
+var a = 3.3;
+print(round(a));  // Should be 3
+
+a = 4.7;
+print(round(a));  // Should be 5
+
+a = 7;
+print(round(a));  // Should be 7
+
+a = -1.5;
+print(round(a));  // Should be -1
+
+a = -1.6;
+print(round(a));  // Should be -2

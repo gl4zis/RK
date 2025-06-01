@@ -1,6 +1,8 @@
 package ru.itmo.rk.hw4.operation;
 
 import ru.itmo.rk.hw4.exception.InvalidKeywordException;
+import ru.itmo.rk.hw4.operation.api.Operation;
+import ru.itmo.rk.hw4.operation.impl.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +26,9 @@ public class OperationStrategy {
 
         add(new OrOperation());
         add(new AndOperation());
+
+        add(new NotOperation());
+        add(new NegateOperation());
     }
 
     public Operation choose(String token) {

@@ -8,7 +8,7 @@ import ru.itmo.rk.hw4.var.VarHeap;
 @RequiredArgsConstructor
 public class ExpressionVisitor extends CatlinBaseVisitor<Object> {
     private final VarHeap heap;
-    private final OperationStrategy operationStrategy = new OperationStrategy();
+    private final OperationStrategy operationStrategy;
 
     @Override
     public Object visitMulDivOp(CatlinParser.MulDivOpContext ctx) {
@@ -84,6 +84,13 @@ public class ExpressionVisitor extends CatlinBaseVisitor<Object> {
         var right = visit(ctx.expression(1));
         var op = ctx.op.getText();
         return operationStrategy.choose(op).apply(left, right);
+    }
+
+    @Override
+    public Object visitPrefixOp(CatlinParser.PrefixOpContext poc) {
+        var expr = visit(poc.expression());
+        var op = "prefix" + poc.op.getText();
+        return operationStrategy.choose(op).apply(expr);
     }
 
     @Override

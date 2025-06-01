@@ -4,6 +4,7 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import ru.itmo.rk.hw4.operation.OperationStrategy;
 import ru.itmo.rk.hw4.var.VarHeap;
 
 import java.util.List;
@@ -15,7 +16,8 @@ public class CatlinInterpreter {
 
     public CatlinInterpreter() {
         VarHeap varHeap = new VarHeap();
-        ExpressionVisitor expressionVisitor = new ExpressionVisitor(varHeap);
+        OperationStrategy operationStrategy = new OperationStrategy();
+        ExpressionVisitor expressionVisitor = new ExpressionVisitor(varHeap, operationStrategy);
         statementVisitor = new StatementVisitor(varHeap, expressionVisitor);
     }
 
@@ -32,7 +34,9 @@ public class CatlinInterpreter {
             throw new RuntimeException("Program was not loaded");
         }
 
-        return filterNulls((List<Object>) statementVisitor.visit(tree)).toList();
+        List<Object> result = filterNulls((List<Object>) statementVisitor.visit(tree)).toList();
+        tree = null;
+        return result;
     }
 
     private Stream<Object> filterNulls(List<?> list) {

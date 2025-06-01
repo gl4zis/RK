@@ -1,8 +1,11 @@
-package ru.itmo.rk.hw4.operation;
+package ru.itmo.rk.hw4.operation.impl;
+
+import ru.itmo.rk.hw4.operation.OperationUtils;
+import ru.itmo.rk.hw4.operation.api.BinaryOperation;
 
 import java.util.Set;
 
-public class MulOperation extends Operation {
+public class MulOperation extends BinaryOperation {
 
     public MulOperation() {
         super("*", Set.of(Long.class, Double.class));
